@@ -40,7 +40,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
     } else if (Platform.isMacOS) {
       fullPath = p.join(fullPath, "libcore.dylib");
     } else {
-      fullPath = p.join(fullPath, "libcore.so");
+      fullPath = p.join(fullPath, "hiddify-core.so");
     }
     _logger.debug('singbox native libs path: "$fullPath"');
     final lib = DynamicLibrary.open(fullPath);
