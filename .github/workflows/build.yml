@@ -76,12 +76,12 @@ jobs:
           - platform: linux
             os: ubuntu-22.04
             aarch: amd64
-            targets: AppImage,deb,rpm
+            targets: deb
 
           - platform: linux
             os: ubuntu-22.04-arm
             aarch: arm64
-            targets: AppImage,deb,rpm
+            targets: deb
 
           - platform: macos
             os: macos-13
