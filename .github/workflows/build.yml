@@ -19,9 +19,9 @@ env:
   NDK_VERSION: r26d
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
-  TARGET_NAME_AppImage: "Hiddify-Linux-x64"
-  TARGET_NAME_deb: "Hiddify-Debian-x64"
-  TARGET_NAME_rpm: "Hiddify-rpm-x64"
+  TARGET_NAME_AppImage: "Hiddify-Linux"
+  TARGET_NAME_deb: "Hiddify-Debian"
+  TARGET_NAME_rpm: "Hiddify-rpm"
   TARGET_NAME_apk: "Hiddify-Android"
   TARGET_NAME_aab: "Hiddify-Android"
   #TARGET_NAME_exe: "Hiddify-Windows-x64"
@@ -257,7 +257,7 @@ jobs:
           
           for EXT in $(echo ${{ matrix.targets }} | tr ',' '\n'); do
             KEY=TARGET_NAME_${EXT}
-            FILENAME=${!KEY}
+            FILENAME=${!KEY}-${{ matrix.aarch }}
             echo "For $EXT ($KEY) filename is ${FILENAME}"
             mv dist/*/*.$EXT tmp_out/${FILENAME}.$EXT
             ls tmp_out
