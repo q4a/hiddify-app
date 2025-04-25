@@ -78,6 +78,11 @@ jobs:
             aarch: amd64
             targets: AppImage,deb,rpm
 
+          - platform: linux
+            os: ubuntu-22.04-arm
+            aarch: arm64
+            targets: AppImage,deb,rpm
+
           - platform: macos
             os: macos-13
             aarch: universal
@@ -114,11 +119,20 @@ jobs:
 
       
       - name: Setup Flutter
+        if: ${{ matrix.os != 'ubuntu-22.04-arm' }}
         uses: subosito/flutter-action@v2.16.0 #issue with 2.13
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           # flutter-version-file: pubspec.yaml
           channel: 'stable'
+          cache: true
+
+      - name: Setup Flutter arm64 Linux
+        if: ${{ matrix.os == 'ubuntu-22.04-arm' }}
+        uses: subosito/flutter-action@v2.16.0 #issue with 2.13
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'master'
           cache: true
 
       

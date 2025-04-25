@@ -182,7 +182,8 @@ windows-libs:
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)
-	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
+	$(eval CORE_ARCH=$(shell if [ "$$(uname -m)" = "aarch64" ]; then echo "arm64"; else echo "amd64"; fi))
+	curl -L $(CORE_URL)/$(CORE_NAME)-linux-$(CORE_ARCH).tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 
 macos-libs:
